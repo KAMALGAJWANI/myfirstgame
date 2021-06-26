@@ -1,0 +1,107 @@
+#firstly ,we have to create our game board,for this we craete a dictionary
+
+Our_Game_Board = {  '7': ' ', '8': ' ', '9': ' ',
+                    '4': ' ', '5': ' ', '6': ' ',
+                    '1': ' ', '2': ' ', '3': ' ',
+}
+
+#for keys of brard--
+O_G_Board_keys = []
+
+for keys in Our_Game_Board:
+    O_G_Board_keys.append(keys)
+
+#Now time to print Our_Game_Board--------
+
+def printOurboard(OGboard):
+    print(OGboard['7'] + '|' + OGboard['8'] + '|' + OGboard['9'])
+    print('=====')
+    print(OGboard['4'] + '|' + OGboard['5'] + '|' + OGboard['6'])
+    print('=====')
+    print(OGboard['1'] + '|' + OGboard['2'] + '|' + OGboard['3'])
+
+# game working mechanism------
+
+def My_Tictac_game():
+    turn = 'X'
+    count = 0
+
+    for i in range(10):
+        printOurboard(Our_Game_Board)
+        print("It's your turn,",turn,".In which place you want to move!")
+
+        move=input()
+
+        if Our_Game_Board[move] == ' ':
+            Our_Game_Board[move]= turn
+            count += 1
+        else:
+            print("\tThat place is already filled.\n\tMove to which place?")
+            continue
+
+            # winning statements----
+        if count >= 5:
+            if Our_Game_Board['7']==Our_Game_Board['8']==Our_Game_Board['9'] != ' ': #Top horizontal
+                printOurboard(Our_Game_Board)
+                print("***\\Game Over\\***")
+                print(" !!!!!! " + turn + " won.!!!!!! ")
+                break
+            elif Our_Game_Board['4']==Our_Game_Board['5']==Our_Game_Board['6'] != ' ': #Mid horizontal
+                printOurboard(Our_Game_Board)
+                print("***\\Game Over\\***")
+                print(" !!!!!! " + turn + " won.!!!!!! ")
+                break
+            elif Our_Game_Board['1']==Our_Game_Board['2']==Our_Game_Board['3'] != ' ': #Bottom horizontal
+                printOurboard(Our_Game_Board)
+                print("***\\Game Over\\***")
+                print(" !!!!!! " + turn + " won.!!!!!! ")
+                break
+            elif Our_Game_Board['7']==Our_Game_Board['4']==Our_Game_Board['1'] != ' ': #Left vertical
+                printOurboard(Our_Game_Board)
+                print("***\\Game Over\\***")
+                print(" !!!!!! " + turn + " won.!!!!!! ")
+                break
+            elif Our_Game_Board['8']==Our_Game_Board['5']==Our_Game_Board['2'] != ' ': #Mid vertical
+                printOurboard(Our_Game_Board)
+                print("***\\Game Over\\***")
+                print(" !!!!!! " + turn + " won.!!!!!! ")
+                break
+            elif Our_Game_Board['9']==Our_Game_Board['6']==Our_Game_Board['3'] != ' ': #Right vertical
+                printOurboard(Our_Game_Board)
+                print("***\\Game Over\\***")
+                print(" !!!!!! " + turn + " won.!!!!!! ")
+                break
+            elif Our_Game_Board['7']==Our_Game_Board['5']==Our_Game_Board['3'] != ' ': #Right diagonal
+                printOurboard(Our_Game_Board)
+                print("***\\Game Over\\***")
+                print(" !!!!!! " + turn + " won.!!!!!! ")
+                break
+            elif Our_Game_Board['9']==Our_Game_Board['5']==Our_Game_Board['1'] != ' ': #left diagonal
+                printOurboard(Our_Game_Board)
+                print("***\\Game Over\\***")
+                print(" !!!!!! " + turn + " won.!!!!!! ")
+                break
+       # when no-one wins ---------
+        if count == 9 :
+            print("***\\Game Over\\***")
+            print("It's a Tie!!!!!!")
+
+        # changing players after one moves-----
+        if turn == 'X':
+            turn = 'O'
+        else:
+            turn = 'X'
+
+      # Now if we want to play it again-----
+    restart_game = input("Do want to play Again?(yes/no)")
+    if restart_game  == "yes" or restart_game  == "Yes" :
+        for key in O_G_Board_keys:
+            Our_Game_Board[key] = " "
+
+        My_Tictac_game()
+
+if __name__ == "__main__":
+    My_Tictac_game()
+
+
+
